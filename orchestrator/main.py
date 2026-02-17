@@ -9,8 +9,9 @@ Run:
     uv run uvicorn orchestrator.main:app --port 8002 --reload
 
 Endpoints:
-    GET  /health       → health check + list of currently active slugs
-    MCP  /mcp/{slug}   → lazily-mounted MCP server for that agent
+    GET  /health            → health check + list of currently active slugs
+    MCP  /mcp/{slug}        → lazily-mounted MCP server for that agent
+    POST /agents/{slug_id}  → run ReAct agent loop for that agent
 """
 
 import contextlib
@@ -28,6 +29,7 @@ setup_logging()
 
 from orchestrator.middleware import DynamicMCPMiddleware
 from orchestrator.registry import exit_stack, handlers
+from orchestrator.router import router
 
 log = structlog.get_logger(__name__)
 
@@ -42,6 +44,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Dynamic Agent Gateway", lifespan=lifespan)
 app.add_middleware(DynamicMCPMiddleware)
+app.include_router(router)
 
 
 @app.get("/health")
