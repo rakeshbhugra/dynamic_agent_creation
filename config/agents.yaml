@@ -44,3 +44,18 @@ agents:
       - url: "http://localhost:8001/mcp"
         tools:
           - get_patient
+
+api_keys:
+  key-reader-001:
+    allowed_agents:
+      - clinical-reader
+      - test5
+  key-writer-001:
+    allowed_agents:
+      - clinical-writer
+  key-admin-001:
+    allowed_agents:
+      - clinical-reader
+      - clinical-writer
+      - clinical-admin
+      - test5

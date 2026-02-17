@@ -33,8 +33,13 @@ class AgentConfig(BaseModel):
     servers: list[MCPServerConfig]
 
 
+class ApiKeyConfig(BaseModel):
+    allowed_agents: list[str]
+
+
 class AgentsConfig(BaseModel):
     agents: dict[str, AgentConfig]
+    api_keys: dict[str, ApiKeyConfig] = {}
 
 
 # ---------------------------------------------------------------------------
