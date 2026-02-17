@@ -1,0 +1,46 @@
+agents:
+  clinical-reader:
+    name: "Clinical Reader"
+    system_prompt: >
+      You are a read-only clinical assistant.
+      You can list and look up patient records but cannot modify them.
+    servers:
+      - url: "http://localhost:8001/mcp"
+        tools:
+          - list_patients
+          - get_patient
+
+  clinical-writer:
+    name: "Clinical Writer"
+    system_prompt: >
+      You are a clinical data entry assistant.
+      You can create, update, and delete patient records.
+    servers:
+      - url: "http://localhost:8001/mcp"
+        tools:
+          - create_patient
+          - update_patient
+          - delete_patient
+
+  clinical-admin:
+    name: "Clinical Admin"
+    system_prompt: >
+      You are a clinical admin with full access to all patient operations.
+    servers:
+      - url: "http://localhost:8001/mcp"
+        tools:
+          - list_patients
+          - get_patient
+          - create_patient
+          - update_patient
+          - delete_patient
+
+  test5:
+    name: "test5"
+    system_prompt: >
+      You are a clinical data entry assistant.
+      You can create, update, and delete patient records.
+    servers:
+      - url: "http://localhost:8001/mcp"
+        tools:
+          - get_patient
