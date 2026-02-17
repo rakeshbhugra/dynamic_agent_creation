@@ -82,6 +82,12 @@ Functions to be implemented in `utils.py`:
 
 ---
 
+## Related
+
+- [MCP Tools PRD](./mcp-tools-prd.md) — MCP layer that wraps this API as agent-callable tools
+
+---
+
 ## Out of Scope
 
 - User authentication / roles
